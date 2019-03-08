@@ -6,11 +6,11 @@ cloud.init()
 
 exports.main = async (event, context) => {
   
-  utils.extracMenuToDB();
+  utils.extractMenuToDB();
   menu.urls.forEach(obj => {
+    // obj.url is not in blacklist
     if(menu.blacklist.indexOf(obj.url) == -1) {
-      // obj.url is not in blacklist
-      utils.extractAllContentToDB(obj.url);
+      utils.extractContentToDB(obj.url);
     }
   })
   

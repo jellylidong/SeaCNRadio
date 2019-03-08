@@ -90,6 +90,7 @@ var extractMenuToDB = function () {
 var extractContentToDB = function (url) {
   var tmp = url.split('/');
   var type = tmp[tmp.length-2];
+  var dataPromise = getRawHtmlData(url);
   return dataPromise.then($, errHandler)
     .then(extractContent, errHandler)
     .then(function (urlsdata) {
