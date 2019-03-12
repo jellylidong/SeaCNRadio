@@ -6,13 +6,34 @@
     "pages/databaseGuide/databaseGuide",
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib"
+    "pages/chooseLib/chooseLib",
+    "pages/player/player"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "西雅图中文电台",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#919191",
+    "selectedColor": "#000000",
+    "backgroundColor": "#e3e6ea",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "电台",
+        "iconPath": "assets/image/radioStation-1.png",
+        "selectedIconPath": "assets/image/radioStation-2.png"
+      },
+      {
+        "pagePath": "pages/player/player",
+        "text": "正在播放",
+        "iconPath": "assets/image/playing-1.png",
+        "selectedIconPath": "assets/image/playing-2.png"
+      }
+    ]
   }
 }
