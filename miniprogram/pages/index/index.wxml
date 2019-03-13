@@ -40,4 +40,10 @@
     </navigator>
   </view>
 
+  <view class="menu">
+    <view class="menu-item" wx:for="{{menuItems}}">
+    {{item.title}}
+    </view>
+  </view>
+
 </view>

@@ -7,7 +7,8 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    menuItems:[]
   },
 
   onLoad: function() {
@@ -34,6 +35,8 @@ Page({
         }
       }
     })
+
+    this.getMenuData()
   },
 
   onGetUserInfo: function(e) {
@@ -116,5 +119,17 @@ Page({
       }
     })
   },
+
+  getMenuData: function() {
+    const db = wx.cloud.database()
+    db.collection('radiostation').doc('menu').get().then(res => {
+      console.log(res.data.urls)
+      this.setData({
+        menuItems: res.data.urls
+      })
+    }).catch(err => {
+      console.log('get menu data failed', err)
+    })
+  }
 
 })
