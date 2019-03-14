@@ -1,2 +1,6 @@
 <!--pages/audioItems/audioItems.wxml-->
 <text>pages/audioItems/audioItems.wxml</text>
+<view>
+  <text>page title {{title}}</text>
+</view>
+
