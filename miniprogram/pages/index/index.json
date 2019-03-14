@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "audio-items": "/components/audioItems/audioItems"
+  }
 }

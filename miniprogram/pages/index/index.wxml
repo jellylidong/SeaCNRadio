@@ -42,8 +42,11 @@
 
   <view class="menu">
     <view class="menu-item" wx:for="{{menuItems}}">
-    {{item.title}}
+      <navigator url="../audioItems/audioItems">
+      {{item.title}}
+      </navigator>
     </view>
+    
   </view>
 
 </view>
