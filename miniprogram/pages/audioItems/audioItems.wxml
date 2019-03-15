@@ -1,6 +1,7 @@
-<!--pages/audioItems/audioItems.wxml-->
-<text>pages/audioItems/audioItems.wxml</text>
-<view>
-  <text>page title {{title}}</text>
-</view>
 
+<view>
+  <view class="audio-item" wx:for="{{audioItems}}">
+      <text>{{item.title}}</text>
+      <text>{{item.url}}</text>
+  </view>
+</view>

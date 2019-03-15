@@ -1,20 +1,33 @@
-// pages/audioItems/audioItems.js
+// miniprogram/pages/ audioItems/audioItems.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      title:''
+      id: '',
+      title:'',
+      url:'',
+      audioItems: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      this.setData({
-        title: options.testDate
-      })
+
+    
+    var item = JSON.parse(options.item)
+    var tmp = item.url.split('/');
+    var id = tmp[tmp.length - 2];
+    console.log('###')
+    console.log(item)
+    this.setData({
+      title: item.title,
+      id: id
+    })
+
+    this.getAudioData(id)
   },
 
   /**
@@ -64,5 +77,17 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  getAudioData: function (id) {
+    const db = wx.cloud.database()
+    db.collection('radiostation').doc(id).get().then(res => {
+      console.log(res.data.urls)
+      this.setData({
+        audioItems: res.data.urls
+      })
+    }).catch(err => {
+      console.log('get menu data failed', err)
+    })
   }
 })

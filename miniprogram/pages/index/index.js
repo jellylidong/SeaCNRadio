@@ -123,8 +123,14 @@ Page({
     const db = wx.cloud.database()
     db.collection('radiostation').doc('menu').get().then(res => {
       console.log(res.data.urls)
+      var urls = res.data.urls
+      var menuItems = []
+      urls.forEach(url => menuItems.push({
+        raw: url,
+        str:JSON.stringify(url)}
+        ))
       this.setData({
-        menuItems: res.data.urls
+        menuItems: menuItems
       })
     }).catch(err => {
       console.log('get menu data failed', err)
