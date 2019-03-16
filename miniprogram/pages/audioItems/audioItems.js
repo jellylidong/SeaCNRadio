@@ -89,5 +89,10 @@ Page({
     }).catch(err => {
       console.log('get menu data failed', err)
     })
+  },
+
+  playAudio: function(event) {
+    console.log(event.currentTarget.dataset.test.title)
+    console.log("component tapped")
   }
 })

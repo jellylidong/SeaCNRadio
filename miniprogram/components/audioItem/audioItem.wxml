@@ -1,0 +1,5 @@
+<!--components/audioItem/audioItem.wxml-->
+<view>
+  <view>{{audioName}}</view>
+  <view>{{audioUrl}}</view>
+</view>

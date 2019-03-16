@@ -36,5 +36,7 @@
         "selectedIconPath": "assets/image/playing-2.png"
       }
     ]
-  }
+  },
+
+  "requiredBackgroundModes": ["audio"]
 }

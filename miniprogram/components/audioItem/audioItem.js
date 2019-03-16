@@ -1,10 +1,17 @@
-// components/audioItems/audioItems.js
+// components/audioItem/audioItem.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    audioName:{
+      type:"string",
+      value:"audioName not set"
+    },
+    audioUrl:{
+      type: "string",
+      value: "audioUrl not set"
+    }
   },
 
   /**
