@@ -1,6 +1,6 @@
 
 <view>
   <view class="audio-item" wx:for="{{audioItems}}">
-      <audioItem audio-name="{{item.title}}" audio-url="{{item.url}}" data-test="{{item}}" bindtap="playAudio"></audioItem>
+      <audioItem audio-name="{{item.title}}" audio-url="{{item.url}}" data-audio-info="{{item}}" bindtap="playAudio"></audioItem>
   </view>
 </view>

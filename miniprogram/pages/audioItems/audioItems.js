@@ -92,7 +92,24 @@ Page({
   },
 
   playAudio: function(event) {
-    console.log(event.currentTarget.dataset.test.title)
+    // console.log(event.currentTarget.dataset.audioInfo)
     console.log("component tapped")
+
+    var audioInfo = event.currentTarget.dataset.audioInfo
+    let title = audioInfo.title
+    let url = audioInfo.url
+
+    
+    
+    wx.setStorageSync('playing', {
+      title:title,
+      url:url
+    })
+    var value = wx.getStorageSync('playing')
+    console.log(value)
+
+    const backgroundAudioManager = wx.getBackgroundAudioManager()
+    backgroundAudioManager.title = title
+    backgroundAudioManager.src = url
   }
 })
