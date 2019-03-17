@@ -1,8 +1,8 @@
 Page({
-  onReady(e) {
+  onShow(e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
     this.audioCtx = wx.getBackgroundAudioManager()
-
+    
     let playing = wx.getStorageSync('playing')
     this.setData({
       name: playing.title,
