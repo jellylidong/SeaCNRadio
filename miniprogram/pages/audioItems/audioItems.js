@@ -101,15 +101,22 @@ Page({
 
     
     
-    wx.setStorageSync('playing', {
+    wx.setStorageSync('playerState', {
       title:title,
-      url:url
+      author:'TBD',
+      dataUrl:url,
+      status:1
     })
-    var value = wx.getStorageSync('playing')
-    console.log(value)
+    
 
-    const backgroundAudioManager = wx.getBackgroundAudioManager()
+    let backgroundAudioManager = wx.getBackgroundAudioManager()
     backgroundAudioManager.title = title
     backgroundAudioManager.src = url
+    backgroundAudioManager.singer = "TBD"
+    console.log("backgroundAudioManager.singer " + backgroundAudioManager.singer)
+
+    wx.switchTab({
+      url: "/pages/player/player"
+    })
   }
 })
