@@ -15,6 +15,8 @@ Page({
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
       })
+
+      console.log("aaaa" + app.globalData.test)
       return
     }
 

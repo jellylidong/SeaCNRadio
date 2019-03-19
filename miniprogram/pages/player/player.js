@@ -1,60 +1,48 @@
+const app = getApp().globalData
+
 Page({
   onShow(e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
 
     // let playerState = wx.getStorageSync('playerState')
-    let player = wx.getBackgroundAudioManager()
-
-    console.log("onshow " + player.title)
-    this.setData({
-      title: player.title,
-      author:player.singer,
-      src: player.src,
-      status: player.paused // 1:playing, 0:stopped
-    })
-    // this.playAudio()
-  },
-  data: {
     
+   
+    let player = wx.getBackgroundAudioManager()
+    
+    this.setData({
+      title: app.title,
+      author:app.author,
+      src: app.src,
+      currentPosition:app.currentPosition,
+      isPlaying: !player.paused // true:playing, false:paused
+    })
+    this.playAudio()
+
+    
+  },
+  data: { 
     title: '',
     author: '',
     src: '',
+    currentPosition:0,
+    isPlaying: false
   },
   audioPlay() {
-    wx.getBackgroundAudioPlayerState({
-      success(res) {
-        console.log("before")
-        console.log(res)
-      }
-    })
-
-    var audioCtx = wx.getBackgroundAudioManager()
-    audioCtx.play()
-
-    wx.getBackgroundAudioPlayerState({
-      success(res) {
-        console.log("after")
-        console.log(res)
-      }
-    })
+    var player = wx.getBackgroundAudioManager()
+    if(!this.data.isPlaying) {
+      this.setData({
+        isPlaying: true
+      })
+      player.title = this.data.title
+      player.startTime = this.data.currentPosition
+      player.src = this.data.src
+      
+    }
+    player.play()
   },
   audioPause() {
-    wx.getBackgroundAudioPlayerState({
-      success(res) {
-        console.log("before")
-        console.log(res)
-      }
-    })
-
     var audioCtx = wx.getBackgroundAudioManager()
     audioCtx.pause()
-
-    wx.getBackgroundAudioPlayerState({
-      success(res) {
-        console.log("after")
-        console.log(res)
-      }
-    })
   },
   audio14() {
     var audioCtx = wx.getBackgroundAudioManager()
@@ -82,25 +70,33 @@ Page({
     // }
 
     player.onPlay(() => {
-      var newPlayerState = wx.getStorageSync('playerState')
-      newPlayerState.status = 1
-      wx.setStorageSync('playerState', newPlayerState)
+
     })
 
     player.onPause(() => {
-      var newPlayerState = wx.getStorageSync('playerState')
-      newPlayerState.status = 0
-      wx.setStorageSync('playerState', newPlayerState)
+      app.title = this.data.title
+      app.author = this.data.author
+      app.src = this.data.src
+      app.isPlaying = false
+      app.currentPosition = player.currentTime
+      console.log("onPause triggered")
     })
 
     player.onStop(() => {
+      app.title = this.data.title
+      app.author = this.data.author
+      app.src = this.data.src
+      app.isPlaying = false
+      app.currentPosition = player.currentTime
+      console.log("onStop triggered")
+    })
 
+    player.onTimeUpdate(() => {
+      console.log(player.currentTime)
     })
 
     player.onEnded(() => {
-      var newPlayerState = wx.getStorageSync('playerState')
-      newPlayerState.status = 0
-      wx.setStorageSync('playerState', newPlayerState)
+
     })
   },
 

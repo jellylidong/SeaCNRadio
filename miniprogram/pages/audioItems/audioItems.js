@@ -1,3 +1,5 @@
+const app = getApp().globalData
+
 // miniprogram/pages/ audioItems/audioItems.js
 Page({
 
@@ -99,21 +101,18 @@ Page({
     let title = audioInfo.title
     let url = audioInfo.url
 
-    
-    
-    wx.setStorageSync('playerState', {
-      title:title,
-      author:'TBD',
-      dataUrl:url,
-      status:1
-    })
+    app.title = title
+    app.author = "TBD"
+    app.src = url
+    app.currentPosition = 0
     
 
     let backgroundAudioManager = wx.getBackgroundAudioManager()
     backgroundAudioManager.title = title
+    backgroundAudioManager.startTime = 0
     backgroundAudioManager.src = url
     backgroundAudioManager.singer = "TBD"
-    console.log("backgroundAudioManager.singer " + backgroundAudioManager.singer)
+    
 
     wx.switchTab({
       url: "/pages/player/player"

@@ -9,7 +9,14 @@ App({
         traceUser: true,
       })
     }
+  },
 
-    this.globalData = {}
+  globalData: {
+    title: null,
+    author: null,
+    src: null,
+    currentPosition: 0,
+    isPlaying:false
+
   }
 })
