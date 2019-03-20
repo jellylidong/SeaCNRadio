@@ -1,13 +1,23 @@
-<audio
+<!-- <audio
   
   name="{{title}}"
   author="{{author}}"
   src="{{src}}"
   controls
   loop
-></audio>
+></audio> -->
+
+<view>
+  <view>{{title}}</view>
+  <progress percent="{{progress}}" />
+</view>
 
 <button type="primary" bindtap="audioPlay">播放</button>
-<button type="primary" bindtap="audioPause">暂停</button>
-<button type="primary" bindtap="audio14">设置当前播放时间为14秒</button>
-<button type="primary" bindtap="audioStart">回到开头</button>
+
+<view class="player">
+  <view class="top">
+    <view class="title">{{title || '暂无正在播放'}}</view>
+    <view class="subtitle">{{author || ""}}</view>
+  </view>
+</view>
+

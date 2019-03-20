@@ -1,1 +1,2 @@
 /* components/audioItem/audioItem.wxss */
+@import '../../style/weui.wxss';

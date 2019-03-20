@@ -16,8 +16,7 @@ Page({
       currentPosition:app.currentPosition,
       isPlaying: !player.paused // true:playing, false:paused
     })
-    this.playAudio()
-
+    this.initAudioPlayer()
     
   },
   data: { 
@@ -25,7 +24,8 @@ Page({
     author: '',
     src: '',
     currentPosition:0,
-    isPlaying: false
+    isPlaying: false,
+    progress:0
   },
   audioPlay() {
     var player = wx.getBackgroundAudioManager()
@@ -36,38 +36,27 @@ Page({
       player.title = this.data.title
       player.startTime = this.data.currentPosition
       player.src = this.data.src
-      
+      player.play()
+    } else {
+      this.setData({ 
+        isPlaying: false,
+        currentPosition: player.currentTime
+       })
+      player.pause()
     }
-    player.play()
+    
   },
   audioPause() {
+    this.setData({
+      isPlaying: false,
+      currentPosition: player.currentTime
+    })
     var audioCtx = wx.getBackgroundAudioManager()
     audioCtx.pause()
   },
-  audio14() {
-    var audioCtx = wx.getBackgroundAudioManager()
-    audioCtx.seek(14)
-  },
-  audioStart() {
-    var audioCtx = wx.getBackgroundAudioManager()
-    audioCtx.seek(0)
-  },
 
-  playAudio() {
+  initAudioPlayer() {
     let player = wx.getBackgroundAudioManager()
-
-    // if (this.data.status == 0) {
-    //   player.title = this.data.title
-    //   player.src = this.data.src
-    //   player.pause() 
-    //   wx.getBackgroundAudioPlayerState({
-    //     success(res) {
-    //       player.seek(res.currentPosition)
-    //     }
-    //   })
-    
-      
-    // }
 
     player.onPlay(() => {
 
@@ -93,6 +82,9 @@ Page({
 
     player.onTimeUpdate(() => {
       console.log(player.currentTime)
+      console.log(player.duration)
+      this.setData({
+        progress: 100*player.currentTime/player.duration})
     })
 
     player.onEnded(() => {
