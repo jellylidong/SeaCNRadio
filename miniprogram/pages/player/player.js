@@ -1,6 +1,7 @@
 const app = getApp().globalData
 
 Page({
+  
   onShow(e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
 
@@ -13,8 +14,11 @@ Page({
       title: app.title,
       author:app.author,
       src: app.src,
-      currentPosition:app.currentPosition,
-      isPlaying: !player.paused // true:playing, false:paused
+      currentPosition:'00:00',
+      duration:'00:00',
+      percent: app.currentPosition / app.duration,
+      isPlaying: !player.paused, // true:playing, false:paused.
+      playIcon: (player.paused == undefined || player.paused)? 'icon-play': 'icon-pause'
     })
     this.initAudioPlayer()
     
@@ -23,7 +27,9 @@ Page({
     title: '',
     author: '',
     src: '',
-    currentPosition:0,
+    currentPosition:'00:00',
+    duration:'00:00',
+    percent:0,
     isPlaying: false,
     progress:0
   },
@@ -31,7 +37,10 @@ Page({
     var player = wx.getBackgroundAudioManager()
     if(!this.data.isPlaying) {
       this.setData({
-        isPlaying: true
+        isPlaying: true,
+        currentPosition: this.transformTime(player.currentTime),
+        duration: this.transformTime(player.duration),
+        playIcon: 'icon-play'
       })
       player.title = this.data.title
       player.startTime = this.data.currentPosition
@@ -40,16 +49,17 @@ Page({
     } else {
       this.setData({ 
         isPlaying: false,
-        currentPosition: player.currentTime
+        currentPosition: this.transformTime(player.currentTime),
+        duration: this.transformTime(player.duration),
+        playIcon: 'icon-play'
        })
       player.pause()
     }
-    
   },
   audioPause() {
     this.setData({
       isPlaying: false,
-      currentPosition: player.currentTime
+      currentPosition: this.transformTime(player.currentTime)
     })
     var audioCtx = wx.getBackgroundAudioManager()
     audioCtx.pause()
@@ -59,7 +69,9 @@ Page({
     let player = wx.getBackgroundAudioManager()
 
     player.onPlay(() => {
-
+      this.setData({
+        playIcon: 'icon-pause'
+      })
     })
 
     player.onPause(() => {
@@ -68,7 +80,11 @@ Page({
       app.src = this.data.src
       app.isPlaying = false
       app.currentPosition = player.currentTime
+      app.duration = player.duration
       console.log("onPause triggered")
+      this.setData({
+        playIcon: 'icon-play'
+      })
     })
 
     player.onStop(() => {
@@ -77,6 +93,10 @@ Page({
       app.src = this.data.src
       app.isPlaying = false
       app.currentPosition = player.currentTime
+      app.duration = player.duration
+      this.setData({
+        playIcon: 'icon-play'
+      })
       console.log("onStop triggered")
     })
 
@@ -84,7 +104,12 @@ Page({
       console.log(player.currentTime)
       console.log(player.duration)
       this.setData({
-        progress: 100*player.currentTime/player.duration})
+        progress: 100*player.currentTime/player.duration,
+        percent: player.currentTime / player.duration,
+        currentPosition: this.transformTime(player.currentTime),
+        duration:this.transformTime(player.duration)
+
+      })
     })
 
     player.onEnded(() => {
@@ -96,5 +121,24 @@ Page({
     let player = wx.getBackgroundAudioManager();
     player.stop();
   },
+
+  transformTime(timeInSec) {
+      var timeInSec = timeInSec|0
+      var sec = (timeInSec%60)|0
+      if(sec < 10) {
+        sec = '0' + sec
+      }
+      var min = (timeInSec/60)|0
+      if(min < 10) {
+        min = '0' + min
+      }
+
+      return min + ':' + sec
+  },
+
+  goForward() {
+    let player = wx.getBackgroundAudioManager()
+    player.seek(player.currentTime + 10)
+  }
 
 })

@@ -16,6 +16,7 @@ App({
     author: null,
     src: null,
     currentPosition: 0,
+    duration:0,
     isPlaying:false
 
   }

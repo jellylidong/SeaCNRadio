@@ -6,18 +6,53 @@
   controls
   loop
 ></audio> -->
-
+<!-- <view  class="bg" style="background-image:url('../../assets/image/bg.png');background-size:cover"> -->
 <view>
-  <view>{{title}}</view>
-  <progress percent="{{progress}}" />
-</view>
+  <view class="player" >
 
-<button type="primary" bindtap="audioPlay">播放</button>
 
-<view class="player">
-  <view class="top">
-    <view class="title">{{title || '暂无正在播放'}}</view>
-    <view class="subtitle">{{author || ""}}</view>
+    <view class="normal-player" wx:if="fullScreen">
+      <view class="background">
+        <image src="../../assets/image/bg.png" style="min-width: 100%; min-height: 100%;" />
+      </view>
+
+      <view class="top">
+        <view class="title">{{title || '暂无正在播放歌曲'}}</view>
+        <view class="subtitle">{{author || ""}}</view>
+      </view>
+
+      <view class="bottom">
+        <view class="progress-wrapper">
+          <text class="time time-l">{{currentPosition}}</text>
+          <view class="progress-bar-wrapper">
+            <progress-bar percent="{{percent}}"></progress-bar>
+          </view>
+          <text class="time time-r">{{duration}}</text>
+        </view>
+
+        <view class="operators">
+          <view class="icon i-left">
+            <i class="icon-prev" bindtap="prev"></i>
+          </view>
+          <view class="icon i-center">
+            <i class="{{playIcon}}" bindtap="audioPlay"></i>
+          </view>
+          <view class="icon i-right">
+            <i class="icon-next" bindtap="goForward"></i>
+          </view>    
+        </view>
+      </view>
+      
+    </view>
+
+    <!-- <view>
+      <button type="primary" bindtap="audioPlay">播放</button>
+      <view class="title">{{title || '暂无正在播放'}}</view>
+      <view class="subtitle">{{author || ""}}</view>
+      <progress percent="{{progress}}" />
+    </view> -->
+
+
   </view>
 </view>
 

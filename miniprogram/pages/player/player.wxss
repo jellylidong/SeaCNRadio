@@ -16,28 +16,29 @@
     height: 100%;
     z-index: -1;
     opacity: 0.6;
-    -webkit-filter: blur(40rpx);
-    filter: blur(40rpx);
+    -webkit-filter: blur(20rpx);
+    filter: blur(10rpx);
 }
 .player .normal-player .top {
     position: relative;
     margin-bottom: 50rpx;
+    margin-top: 400rpx;
 }
 .player .normal-player .top .title {
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
     line-height: 80rpx;
     text-align: center;
     text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    font-size: 36rpx;
+    overflow: auto;
+    white-space: pre-wrap;
+    font-size: 30rpx;
     color: #fff;
 }
 .player .normal-player .top .subtitle {
     line-height: 40rpx;
     text-align: center;
-    font-size: 28rpx;
+    font-size: 24rpx;
     color: #fff;
 }
 .player .normal-player .middle {
@@ -111,7 +112,7 @@
 }
 .player .normal-player .bottom .progress-wrapper .time {
   color: #fff;
-  font-size: 24rpx;
+  font-size: 22rpx;
   -webkit-box-flex: 0;
   -ms-flex: 0 0 60rpx;
   flex: 0 0 60rpx;
@@ -130,7 +131,7 @@
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    color: #ffcd32;
+    color: #bcddf0;
 }
 .player .normal-player .bottom .operators .i-left {
     text-align: right;
