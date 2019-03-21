@@ -23,6 +23,7 @@
     position: relative;
     margin-bottom: 50rpx;
     margin-top: 400rpx;
+    
 }
 .player .normal-player .top .title {
     width: 90%;
@@ -106,13 +107,15 @@
 }
 .player .normal-player .bottom .progress-wrapper .time.time-l {
     text-align: left;
+    margin-right:4rpx;
 }
 .player .normal-player .bottom .progress-wrapper .time.time-r {
     text-align: right;
+    margin-left:4rpx
 }
 .player .normal-player .bottom .progress-wrapper .time {
   color: #fff;
-  font-size: 22rpx;
+  font-size: 24rpx;
   -webkit-box-flex: 0;
   -ms-flex: 0 0 60rpx;
   flex: 0 0 60rpx;
