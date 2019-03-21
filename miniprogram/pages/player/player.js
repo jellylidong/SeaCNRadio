@@ -83,7 +83,8 @@ Page({
       app.duration = player.duration
       console.log("onPause triggered")
       this.setData({
-        playIcon: 'icon-play'
+        playIcon: 'icon-play',
+        currentPosition: this.transformTime(player.currentTime)
       })
     })
 
@@ -95,7 +96,8 @@ Page({
       app.currentPosition = player.currentTime
       app.duration = player.duration
       this.setData({
-        playIcon: 'icon-play'
+        playIcon: 'icon-play',
+        currentPosition: this.transformTime(player.currentTime)
       })
       console.log("onStop triggered")
     })
