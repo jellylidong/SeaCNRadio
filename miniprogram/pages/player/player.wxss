@@ -107,11 +107,11 @@
 }
 .player .normal-player .bottom .progress-wrapper .time.time-l {
     text-align: left;
-    margin-right:4rpx;
+    margin-right:10rpx;
 }
 .player .normal-player .bottom .progress-wrapper .time.time-r {
     text-align: right;
-    margin-left:4rpx
+    margin-left:10rpx
 }
 .player .normal-player .bottom .progress-wrapper .time {
   color: #fff;
