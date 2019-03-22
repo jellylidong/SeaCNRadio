@@ -23,11 +23,11 @@
 
       <view class="bottom">
         <view class="progress-wrapper">
-          <text class="time time-l">{{currentPosition}}</text>
+          <text class="time time-l">{{progressLeftTime}}</text>
           <view class="progress-bar-wrapper">
-            <progress-bar percent="{{percent}}"></progress-bar>
+            <progress-bar percent="{{progress}}"></progress-bar>
           </view>
-          <text class="time time-r">{{duration}}</text>
+          <text class="time time-r">{{progressRightTime}}</text>
         </view>
 
         <view class="operators">

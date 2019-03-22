@@ -9,14 +9,16 @@ Page({
     
    
     let player = wx.getBackgroundAudioManager()
-    
+    player.coverImgUrl = "https://cdn1.iconfinder.com/data/icons/streamline-share/60/cell-16-0-480.png"
     this.setData({
       title: app.title,
       author:app.author,
       src: app.src,
-      currentPosition:'00:00',
-      duration:'00:00',
-      percent: app.currentPosition / app.duration,
+      currentPosition: app.currentPosition,
+      duration:app.duration,
+      progress: app.currentPosition / app.duration,
+      progressLeftTime: this.transformTime(app.currentPosition),
+      progressRightTime: this.transformTime(app.duration),
       isPlaying: !player.paused, // true:playing, false:paused.
       playIcon: (player.paused == undefined || player.paused)? 'icon-play': 'icon-pause'
     })
@@ -27,19 +29,23 @@ Page({
     title: '',
     author: '',
     src: '',
-    currentPosition:'00:00',
-    duration:'00:00',
-    percent:0,
+    currentPosition:0,
+    duration:0,
     isPlaying: false,
-    progress:0
+    progress:0,
+    progressLeftTime: '',
+    progressRightTime:'',
+    playIcon: ''
   },
   audioPlay() {
     var player = wx.getBackgroundAudioManager()
     if(!this.data.isPlaying) {
       this.setData({
         isPlaying: true,
-        currentPosition: this.transformTime(player.currentTime),
-        duration: this.transformTime(player.duration),
+        currentPosition: player.currentTime,
+        duration: player.duration,
+        progressLeftTime: this.transformTime(player.currentTime),
+        progressRightTime: this.transformTime(player.duration),
         playIcon: 'icon-play'
       })
       player.title = this.data.title
@@ -49,8 +55,10 @@ Page({
     } else {
       this.setData({ 
         isPlaying: false,
-        currentPosition: this.transformTime(player.currentTime),
-        duration: this.transformTime(player.duration),
+        currentPosition: player.currentTime,
+        duration: player.duration,
+        progressLeftTime: this.transformTime(player.currentTime),
+        progressRightTime: this.transformTime(player.duration),
         playIcon: 'icon-play'
        })
       player.pause()
@@ -59,7 +67,9 @@ Page({
   audioPause() {
     this.setData({
       isPlaying: false,
-      currentPosition: this.transformTime(player.currentTime)
+      currentPosition: player.currentTime,
+      progressLeftTime: this.transformTime(player.currentTime),
+      progressRightTime: this.transformTime(player.duration),
     })
     var audioCtx = wx.getBackgroundAudioManager()
     audioCtx.pause()
@@ -84,7 +94,10 @@ Page({
       console.log("onPause triggered")
       this.setData({
         playIcon: 'icon-play',
-        currentPosition: this.transformTime(player.currentTime)
+        currentPosition: player.currentTime,
+        progressLeftTime: this.transformTime(player.currentTime),
+        progressRightTime: this.transformTime(player.duration),
+        isPlaying: false
       })
     })
 
@@ -97,21 +110,26 @@ Page({
       app.duration = player.duration
       this.setData({
         playIcon: 'icon-play',
-        currentPosition: this.transformTime(player.currentTime)
+        currentPosition: this.transformTime(player.currentTime),
+        progressLeftTime: this.transformTime(player.currentTime),
+        progressRightTime: this.transformTime(player.duration),
+        isPlaying: false
       })
       console.log("onStop triggered")
     })
 
     player.onTimeUpdate(() => {
-      console.log(player.currentTime)
-      console.log(player.duration)
+      //console.log(player.currentTime)
+      //console.log(player.duration)
       this.setData({
-        progress: 100*player.currentTime/player.duration,
-        percent: player.currentTime / player.duration,
-        currentPosition: this.transformTime(player.currentTime),
-        duration:this.transformTime(player.duration)
-
+        progress: player.currentTime / player.duration,
+        currentPosition: player.currentTime,
+        duration:player.duration,
+        progressLeftTime: this.transformTime(player.currentTime),
+        progressRightTime: this.transformTime(player.duration)
       })
+      app.currentPosition = player.currentTime
+      app.duration = player.duration
     })
 
     player.onEnded(() => {
