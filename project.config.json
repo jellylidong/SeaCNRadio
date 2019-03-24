@@ -6,7 +6,9 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false,
+		"uglifyFileName": true
 	},
 	"appid": "wx6156a05426981f21",
 	"projectname": "SeaCNRadio",

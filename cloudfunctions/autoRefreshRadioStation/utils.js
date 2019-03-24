@@ -97,16 +97,19 @@ var extractContentToDB = function (url) {
       var date = new Date();
       var timestamp = date.getTime();
       try {
-        db.collection('radiostation').add({
+        db.collection('radiostation').doc(type).set({
           data: {
-            _id: type,
+           
             urls: urlsdata,
             time: timestamp
+          },
+           success(res) {
+            console.log(res.data)
           }
         });
         console.log("Write data succesfully to DB: " + type);
       } catch (e) {
-        console.error(e)
+        console.error('Updateing ' + type + ' failed', e)
       }
     }, errHandler)
 }
