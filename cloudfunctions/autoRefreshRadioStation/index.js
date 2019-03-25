@@ -1,7 +1,7 @@
 var utils = require('./utils');
 var menu = require('./menu.json')
 const cloud = require('wx-server-sdk');
-const REFRESH_INTERVAL = 3; // same as the config.json, executed every 5 minutes
+const REFRESH_INTERVAL = 3; // same as the config.json, executed every 3 minutes
 
 cloud.init()
 
