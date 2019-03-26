@@ -135,3 +135,11 @@ page {
   line-height: 36rpx;
   word-break: break-all;
 }
+
+.devider {
+  padding: 20rpx 20rpx;
+  font-size: 36rpx;
+  line-height: 42rpx;
+  word-break: break-all;
+  background: linear-gradient(#d9d9d9, #d9d9d9);
+}

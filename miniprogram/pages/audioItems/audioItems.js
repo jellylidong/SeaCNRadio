@@ -18,14 +18,14 @@ Page({
    */
   onLoad: function (options) {
 
-    
-    var item = JSON.parse(options.item)
-    var tmp = item.url.split('/');
+    var url = options.url
+    var title = options.title
+    console.log(options.title)
+    var tmp = url.split('/');
     var id = tmp[tmp.length - 2];
-    console.log('###')
-    console.log(item)
+
     this.setData({
-      title: item.title,
+      title: title,
       id: id
     })
 

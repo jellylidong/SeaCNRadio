@@ -2,8 +2,24 @@ const app = getApp()
 
 Page({
   data: {
-    menuItems:[],
+    head:[
+      {
+        name: '',
+        id: 'nonaudio',
+        open: true,
+        urls: [
+          { "title": "首页", "url": "https://chineseradioseattle.com/" },
+          { "url": "https://chineseradioseattle.com/about/", "title": "电台简介" },
+          { "title": "节目安排", "url": "https://chineseradioseattle.com/schedule/" },
+          { "url": "https://chineseradioseattle.com/djs/", "title": "主播档案" },
+          { "url": "https://chineseradioseattle.com/past_programs/", "title": "往期节目" },
+          { "title": "加入会员", "url": "https://chineseradioseattle.com/membership/" },
+          //{ "title": "网络电视", "url": "https://chineseradioseattle.com/saturday/crstv/" }
+        ]
+      },
+    ],
     menu:[
+      
       {
         name: '',
         id: 'firstpage',
@@ -98,6 +114,13 @@ Page({
       })
     }).catch(err => {
       console.log('get menu data failed', err)
+    })
+  },
+  popUnsurported: function() {
+    wx.showToast({
+      title: '暂不支持',
+      image: '../../assets/image/exclamation.png',
+      duration: 1000
     })
   }
 
