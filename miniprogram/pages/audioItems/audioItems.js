@@ -18,6 +18,10 @@ Page({
    */
   onLoad: function (options) {
 
+    wx.showLoading({
+      title: '载入数据中',
+    })
+
     var url = options.url
     var title = options.title
     console.log(options.title)
@@ -36,14 +40,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+     
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -88,6 +92,7 @@ Page({
       this.setData({
         audioItems: res.data.urls
       })
+      wx.hideLoading()
     }).catch(err => {
       console.log('get menu data failed', err)
     })
