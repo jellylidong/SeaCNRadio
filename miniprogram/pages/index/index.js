@@ -122,6 +122,13 @@ Page({
       image: '../../assets/image/exclamation.png',
       duration: 1000
     })
+
+    let picNum = Math.floor(Math.random() * 151)
+    wx.showToast({
+      title: '暂不支持',
+      image: '../../assets/image/skipforfun/' + picNum + '.png',
+      duration: 500
+    })
   }
 
 })
