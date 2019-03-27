@@ -7,7 +7,7 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": true,
+		"autoAudits": false,
 		"uglifyFileName": true
 	},
 	"appid": "wx6156a05426981f21",

@@ -9,7 +9,7 @@ Page({
     
    
     let player = wx.getBackgroundAudioManager()
-    player.coverImgUrl = "https://cdn1.iconfinder.com/data/icons/streamline-share/60/cell-16-0-480.png"
+    player.coverImgUrl = "https://media1.fdncms.com/stranger/imager/u/original/37306944/original-1526512_10151856317206977_1192085383_n.jpg"//"https://cdn1.iconfinder.com/data/icons/streamline-share/60/cell-16-0-480.png"
     this.setData({
       title: app.title,
       author:app.author,

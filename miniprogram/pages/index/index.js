@@ -54,7 +54,7 @@ Page({
           { "title": "西城美丽说", "url": "https://chineseradioseattle.com/saturday/seattle_fasion_talk/" },
           { "title": "天方夜谭", "url": "https://chineseradioseattle.com/saturday/chinese_dialects/" },
           { "title": "心灵港湾", "url": "https://chineseradioseattle.com/saturday/soul_harbor/" },
-          { "title": "广播剧", "url": "https://chineseradioseattle.com/saturday/guangboju/" },
+          //{ "title": "广播剧", "url": "https://chineseradioseattle.com/saturday/guangboju/" }, // need to parse specially
           { "title": "福音时间", "url": "https://chineseradioseattle.com/saturday/gospel_time/" },
           { "title": "这里是江苏", "url": "https://chineseradioseattle.com/saturday/jiangsu/" },
           { "title": "西雅图少年说", "url": "https://chineseradioseattle.com/saturday/youth_talk/" },

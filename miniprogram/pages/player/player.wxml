@@ -18,7 +18,7 @@
 
       <view class="top">
         <view class="title">{{title || '暂无正在播放歌曲'}}</view>
-        <view class="subtitle">{{author || ""}}</view>
+        <!-- <view class="subtitle">{{author || ""}}</view> -->
       </view>
 
       <view class="bottom">
@@ -31,15 +31,20 @@
         </view>
 
         <view class="operators">
-          <view class="icon i-left">
+          <!-- <view class="icon i-left">
             <i class="icon-prev" bindtap="prev"></i>
-          </view>
+          </view> -->
           <view class="icon i-center">
             <i class="{{playIcon}}" bindtap="audioPlay"></i>
           </view>
-          <view class="icon i-right">
+           <view class="icon i-center">
+             <i class="icon-next" bindtap="goForward"></i>
+          </view>
+          
+          <!-- <view class="icon i-right">
             <i class="icon-next" bindtap="goForward"></i>
-          </view>    
+          </view> -->
+           
         </view>
       </view>
       
